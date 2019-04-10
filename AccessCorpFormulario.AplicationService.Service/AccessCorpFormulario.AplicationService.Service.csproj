@@ -42,9 +42,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Implementations\FormularioApplicionServie.cs" />
+    <Compile Include="Implementations\TipoCampoApplicationService.cs" />
+    <Compile Include="Implementations\TipoValorCampoApplicationService.cs" />
     <Compile Include="Interfaces\IBaseAplicationServiceAction.cs" />
     <Compile Include="Interfaces\IFormularioApplicionServie.cs" />
     <Compile Include="Interfaces\IBaseAplicationServiceQuery.cs" />
+    <Compile Include="Interfaces\ITipoCampoApplicionServie.cs" />
+    <Compile Include="Interfaces\ITipoValorCampoApplicionServie.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -73,6 +73,10 @@ namespace AccessCorpFormulario.Apresentation.API.App_Start
             kernel.Bind<IFormularioRepository>().To<FormularioRepository>();
             kernel.Bind<IFormularioCamposRepository>().To<FormularioCampoRepository>();
             kernel.Bind<IValorCampoRepository>().To<ValorCampoRepository>();
+
+
+            kernel.Bind<ITipoCampoApplicionServie>().To<TipoCampoApplicationService>();
+            kernel.Bind<ITipoValorCampoApplicionServie>().To<TipoValorCampoApplicationService>();
         }        
     }
 }

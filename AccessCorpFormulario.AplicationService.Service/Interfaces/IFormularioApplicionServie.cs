@@ -10,5 +10,6 @@ namespace AccessCorpFormulario.AplicationService.Service.Interfaces
 {
     public interface IFormularioApplicionServie: IBaseAplicationServiceQuery<FormularioModelView>, IBaseAplicationServiceAction<FormularioModelView>
     {
+
     }
 }

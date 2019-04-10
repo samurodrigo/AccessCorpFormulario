@@ -30,7 +30,6 @@ namespace AccessCorpFormulario.Web.Controllers
         [HttpPost]
         public ActionResult Cadastro(FormularioModelView formulario)
         {
-
             var model = new CadastroFormularioCampoModelView();
 
             model.ListaTipoCampo = MockModelView.ListaTipoCampo();
@@ -44,10 +43,7 @@ namespace AccessCorpFormulario.Web.Controllers
         {
 
             return View(MockModelView.MockListaFormularioModelView());
-        }
-        
-
-
+        } 
 
     }
 }
