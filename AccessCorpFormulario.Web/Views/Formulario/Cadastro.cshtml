@@ -1,4 +1,4 @@
-﻿@model AccessCorpFormulario.Domain.ModelView.FormularioCampoModelView
+﻿@model AccessCorpFormulario.Domain.ModelView.CadastroFormularioCampoModelView
 
 @{
     ViewBag.Title = "Cadastro";
@@ -6,7 +6,7 @@
 
 <h2>Cadastro</h2>
 
-@using (Html.BeginForm())
+@using (Html.BeginForm("Cadastro", "Formulario", FormMethod.Post, new { id="idFormulario"}))
 {
     @Html.AntiForgeryToken()
 
@@ -52,26 +52,26 @@
         <hr />
         <fieldset>
             <legend>Campos do Formulário</legend>
-            <div class="form-group">                
+            <div class="form-group">
                 <label class="control-label col-md-2" for="idTipoCampo">Tipo de Campo</label>
                 <div class="col-md-10">
-                    @Html.DropDownList("idTipoCampo", new SelectList(Model.ListaTipoCampo), htmlAttributes: new { @class = "control-label col-md-2" })
-                <div id="addValoresCombo"></div>
+                    @Html.DropDownList("idTipoCampo", new SelectList(Model.ListaTipoCampo, "Value", "Text"), htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div id="addValoresCombo"></div>
                 </div>
             </div>
 
-            <div class="form-group">                
+            <div class="form-group">
                 <label class="control-label col-md-2" for="idTipoValorCampo">Tipo do valor de campo</label>
                 <div class="col-md-10">
-                    @Html.DropDownList("idTipoValorCampo", new SelectList(Model.ListaTipoValorCampo), htmlAttributes: new { @class = "control-label col-md-2" })
+                    @Html.DropDownList("idTipoValorCampo", new SelectList(Model.ListaTipoValorCampo, "Value", "Text"), htmlAttributes: new { @class = "control-label col-md-2" })
                 </div>
             </div>
 
-            <div class="form-group">               
+            <div class="form-group">
                 <label class="control-label col-md-2" for="ValorCampo"> Valor do Campo</label>
                 <div class="col-md-10">
                     <input class="form-control text-box col-md-3" id="ValorCampo" name="ValorCampo" type="text" value="">
-                    <input class="btn btn-success col-md-5" type="button" id="btnAdicinarCampoParaCombobox" value="Adicinar o campo para o Combobox"/>
+                    <input class="btn btn-success col-md-5" type="button" id="btnAdicinarCampoParaCombobox" value="Adicinar o campo para o Combobox" />
                 </div>
 
             </div>
@@ -80,6 +80,12 @@
                     <input type="button" id="btnAdiconarMaisCampos" value="Adicinar mais campos" class="btn btn-success" />
                 </div>
             </div>
+            <span  id="erro-quantidade-linha-obrigatorio" 
+                  class="field-validation-valid text-danger" 
+                  data-valmsg-for="table-campos" 
+                  data-valmsg-replace="true">É obrigatório adicionar/cadastrar no minímo 10 campos.</span>
+            
+
             <table class="table table-bordered table-responsive table-striped" id="table-campos">
                 <thead>
                     <tr>
@@ -89,9 +95,7 @@
                         <th>Ação</th>
                     </tr>
                 </thead>
-                <tbody>
-                   
-                </tbody>
+                <tbody></tbody>
             </table>
         </fieldset>
         <hr />

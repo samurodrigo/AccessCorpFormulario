@@ -10,48 +10,44 @@ using System.Threading.Tasks;
 
 namespace AccessCorpFormulario.Infrastructure.Database.Repository
 {
-    public class FormularioRepository : BaseRepository, IFormularioRepository
+    public class ValorCampoRepository : BaseRepository, IValorCampoRepository
     {
         public void Delete(int id)
         {
             throw new NotImplementedException();
         }
 
-        public Task<FormularioDomain> GetById(int id)
+        public Task<ValorCampoDomain> GetById(int id)
         {
             throw new NotImplementedException();
         }
 
-        public int Insert(FormularioDomain t)
+        public int Insert(ValorCampoDomain t)
         {
             using (var db = GetConnection())
             {
                 DynamicParameters p = new DynamicParameters();
-                p.Add("@IdFormulario", dbType: DbType.Int32, direction: ParameterDirection.Output);
+
                 p.AddDynamicParams(
                     new
                     {
-                        NomeFormulario = t.NomeFormulario,
-                        DataVencimentoInicio = t.DataVencimentoInicio,
-                        DataVencimentoFim = t.DataVencimentoFim,
-                        DescricaoFormulario = t.DescricaoFormulario
+                        IdTipoCampo = t.IdTipoCampo,
+                        IdFormulario = t.IdFormulario,
+                        ValorCampo = t.ValorCampo
                     });
 
-                int resultado = db.Execute("sp_formulario_Inserir", p, commandType: CommandType.StoredProcedure);
-                if (resultado != 0)
-                {
-                    return p.Get<int>("@IdFormulario");
-                }
+                int resultado = db.Execute("sp_valor_campo_Inserir", p, commandType: CommandType.StoredProcedure);
+
                 return 0;
             }
         }
 
-        public Task<IList<FormularioDomain>> List()
+        public Task<IList<ValorCampoDomain>> List()
         {
             throw new NotImplementedException();
         }
 
-        public void Update(FormularioDomain t)
+        public void Update(ValorCampoDomain t)
         {
             throw new NotImplementedException();
         }

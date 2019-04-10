@@ -7,7 +7,8 @@ using System.Threading.Tasks;
 
 namespace AccessCorpFormulario.Infrastructure.Database.Interface
 {
-    public interface IFormularioRepository : IBaseRepositoryAction<FormularioDomain>, IBaseRepositoryQuery<FormularioDomain>
+    public interface IValorCampoRepository: IBaseRepositoryAction<ValorCampoDomain>, IBaseRepositoryQuery<ValorCampoDomain>
     {
+
     }
 }

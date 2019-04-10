@@ -16,17 +16,17 @@ namespace AccessCorpFormulario.Web.Models
             {
                 new FormularioModelView
                 {
-                    Id = 1,
+                    IdFormulario = 1,
                     DataVencimentoFim = "01/05/2020",
                     DataVencimentoInicio = "01/01/2018",
-                    Nome = "Cadastro de Usuário"
+                    NomeFormulario = "Cadastro de Usuário"
                 },
                 new FormularioModelView
                 {
-                    Id = 2,
+                    IdFormulario = 2,
                     DataVencimentoFim = "18/08/2022",
                     DataVencimentoInicio = "20/10/2020",
-                    Nome = "Cadastro de Roupas"
+                    NomeFormulario = "Cadastro de Roupas"
                 }
             };
         }

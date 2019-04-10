@@ -9,16 +9,19 @@ namespace AccessCorpFormulario.Domain.ModelView
 {
     public class FormularioModelView
     {
-        public int Id { get; set; }
-
+        public int IdFormulario { get; set; }
+       
         [Display(Name = "Nome")]
-        public string Nome { get; set; }
+        public string NomeFormulario { get; set; }
 
         [Display(Name = "Data vencimento início")]
         public string DataVencimentoInicio { get; set; }
 
         [Display(Name = "Data vencimento fim")]
         public string DataVencimentoFim { get; set; }
+
+        [Display(Name = "Descrição Formulário")]
+        public string DescricaoFormulario { get; set; }
 
         [Display(Name = "Está ativo?")]
         private bool Ativo { get; set; }
@@ -31,5 +34,7 @@ namespace AccessCorpFormulario.Domain.ModelView
                 return Ativo ? "Ativo" : "Inativo";
             }
         }
+
+        public List<FormularioCampoModelView> FormularioCampos { get; set; }
     }
 }

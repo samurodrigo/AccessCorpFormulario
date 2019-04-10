@@ -13,5 +13,7 @@ namespace AccessCorpFormulario.Domain.Domain
         public string DataVencimentoInicio { get; set; }
         public string DataVencimentoFim { get; set; }
         public string DescricaoFormulario { get; set; }
+
+        public List<FormularioCampoDomain> FormularioCampos{ get; set; }
     }
 }

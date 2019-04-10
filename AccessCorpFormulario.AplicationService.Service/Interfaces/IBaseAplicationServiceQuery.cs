@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AccessCorpFormulario.Infrastructure.Database.Interface
+namespace AccessCorpFormulario.AplicationService.Service.Interfaces
 {
-    public interface IBaseRepositoryQuery<T> where T : class
+    public interface IBaseAplicationServiceQuery<T> where T : class
     {
         Task<T> GetById(int id);
         Task<IList<T>> List();

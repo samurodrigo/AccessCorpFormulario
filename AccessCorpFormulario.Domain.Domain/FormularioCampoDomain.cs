@@ -8,23 +8,10 @@ namespace AccessCorpFormulario.Domain.Domain
 {
     public class FormularioCampoDomain
     {
-        public FormularioDomain Formulario { get; set; }
+        public FormularioDomain FormularioDomain { get; set; }
         public TipoCampoDomain TipoCampo { get; set; }
         public TipoValorCampoDomain TipoValorCampo { get; set; }
-
-        public List<FormularioCampoDomain> ListaFormularioCampoDomain { get; set; }
-
-        public FormularioCampoDomain()
-        {
-            //ListaFormularioCampoDomain = new List<FormularioCampoDomain>
-            //{
-            //    new FormularioCampoDomain()
-            //    {
-            //        Formulario = this.Formulario,
-            //        TipoCampo = this.TipoCampo,
-            //        TipoValorCampo = this.TipoValorCampo
-            //    }
-            //};
-        }
+        public List<string> ValoresCombobox { get; set; }
+        public string ValorCampo{ get; set; }
     }
 }

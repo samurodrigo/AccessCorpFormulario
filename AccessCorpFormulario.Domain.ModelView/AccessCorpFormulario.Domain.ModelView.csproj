@@ -42,9 +42,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CadastroFormularioCampoModelView.cs" />
     <Compile Include="FormularioCampoModelView.cs" />
     <Compile Include="FormularioModelView.cs" />
+    <Compile Include="Mappers\FormlarioMapper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\AccessCorpFormulario.Domain.Domain\AccessCorpFormulario.Domain.Domain.csproj">
+      <Project>{5A200B70-421B-43AA-A8BD-319F9169C3BE}</Project>
+      <Name>AccessCorpFormulario.Domain.Domain</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

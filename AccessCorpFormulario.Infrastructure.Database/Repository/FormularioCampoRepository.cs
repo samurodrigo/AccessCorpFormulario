@@ -23,12 +23,28 @@ namespace AccessCorpFormulario.Infrastructure.Database.Repository
             throw new NotImplementedException();
         }
 
-        public void Insert(FormularioCampoDomain t)
+        public int Insert(FormularioCampoDomain t)
         {
-            throw new NotImplementedException();
+            using (var db = GetConnection())
+            {
+                DynamicParameters p = new DynamicParameters();
+
+                p.AddDynamicParams(
+                    new
+                    {
+                        IdTipoCampo = t.TipoCampo.IdTipoCampo,
+                        IdTipoValorCampo = t.TipoValorCampo.IdTipoValorCampo,
+                        IdFormulario = t.FormularioDomain.IdFormulario,
+                        DescricaoCampo = t.FormularioDomain.DescricaoFormulario
+                    });
+
+                int resultado = db.Execute("sp_formulario_campo_Inserir", p, commandType: CommandType.StoredProcedure);
+
+                return 0;
+            }
         }
 
-        public async Task<IEnumerable<FormularioCampoDomain>> List()
+        public async Task<IList<FormularioCampoDomain>> List()
         {
             List<FormularioCampoDomain> lista;
             using (var db = GetConnection())
@@ -41,7 +57,7 @@ namespace AccessCorpFormulario.Infrastructure.Database.Repository
                 {
                     fc.TipoCampo = tc;
                     fc.TipoValorCampo = tvc;
-                    fc.Formulario = f;
+                    //fc.Formulario = f;
 
                     lista.Add(fc);
 
@@ -60,5 +76,6 @@ namespace AccessCorpFormulario.Infrastructure.Database.Repository
         {
             throw new NotImplementedException();
         }
+
     }
 }

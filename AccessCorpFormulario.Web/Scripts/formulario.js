@@ -1,6 +1,7 @@
 ﻿
 $(function () {
 
+    $("#erro-quantidade-linha-obrigatorio").hide();
     esconderOuMostrar(true, "btnAdicinarCampoParaCombobox");
     habilitarOuDesabilitar(false, "adiconarMaisCampos");
     addEvents();
@@ -15,6 +16,18 @@ $(document).on('click', '.excluir-linha-tabela', function () {
 });
 
 function addEvents() {
+
+    $("form").submit(function () {
+
+        var formValid = $(this).valid() & validarQuatidadeLinhaTabela();
+
+        if (formValid) {
+            salvar();
+        }
+
+        return false;
+    });
+
     $("#idTipoCampo").on("change", function () {
         var tipoCampo = $(this).find(":selected").text();
 
@@ -38,23 +51,30 @@ function addEvents() {
     $("#btnAdiconarMaisCampos").on("click", function () {
         adiconarMaisCampos();
         removerLabelCombo();
-    });
-
-    $("#btnSalvar").on("click", function () {
-        salvar();
+        validarQuatidadeLinhaTabela();
     });
 }
 
-function Campos(tipoCampo, tipovalorCampo, valorCampo, valoresCombobox) {
-    this.tipoCampo = tipoCampo;
-    this.tipovalorCampo = tipovalorCampo;
-    this.valorCampo = valorCampo;
-    this.valoresCombobox = valoresCombobox;
+function validarQuatidadeLinhaTabela() {
+    var ehValido = true;
+    if ($("#table-campos tbody tr ").length < 10) {
+        $("#erro-quantidade-linha-obrigatorio").show();
+        ehValido = false;
+    } else {
+        $("#erro-quantidade-linha-obrigatorio").hide();
+        ehValido = true;
+    }
+    return ehValido;
 }
 
 function salvar() {
     var tableCampos = $("#table-campos tbody tr");
-    var dados = [];
+    var dadosTabela = [];
+    var nomeFormulario = $("#NomeFormulario").val();
+    var dataVencimentoInicio = $("#DataVencimentoInicio").val();
+    var dataVencimentoFim = $("#DataVencimentoFim").val();
+    var descricaoFormulario = $("#DescricaoFormulario").val();
+
 
     $("#table-campos tbody tr").each(function () {
 
@@ -62,7 +82,6 @@ function salvar() {
         var tipovalorCampo = $(this).find(".tipoValorCampo").text();
         var valoresCombobox = [];
         var valorCampo = "";
-
 
         if (tipoCampo === "Dropbox") {
             valoresCombobox = addVoresCombobox($(this).find(".dados-combobox"));
@@ -72,10 +91,29 @@ function salvar() {
 
         var campos = new Campos(tipoCampo, tipovalorCampo, valorCampo, valoresCombobox);
 
-        dados.push(campos);
+        dadosTabela.push(campos);
     });
 
-    console.log(dados);
+    var formulario = new FormularioCampo(nomeFormulario, dataVencimentoInicio, dataVencimentoFim, descricaoFormulario, dadosTabela);
+
+    console.log(formulario);
+
+    cadastrarFormulario(formulario);
+}
+
+function Campos(tipoCampo, tipovalorCampo, valorCampo, valoresCombobox) {
+    this.TipoCampo = tipoCampo;
+    this.TipovalorCampo = tipovalorCampo;
+    this.ValorCampo = valorCampo;
+    this.ValoresCombobox = valoresCombobox;
+}
+
+function FormularioCampo(nomeFormulario, dataVencimentoInicio, dataVencimentoFim, descricaoFormulario, formularioCampos) {
+    this.NomeFormulario = nomeFormulario;
+    this.DataVencimentoInicio = dataVencimentoInicio;
+    this.DataVencimentoFim = dataVencimentoFim;
+    this.DescricaoFormulario = descricaoFormulario;
+    this.FormularioCampos = formularioCampos;
 }
 
 function addVoresCombobox(valoresCampo) {

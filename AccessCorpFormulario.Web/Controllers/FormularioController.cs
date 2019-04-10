@@ -19,7 +19,7 @@ namespace AccessCorpFormulario.Web.Controllers
         [HttpGet]
         public ActionResult Cadastro()
         {
-            var model = new FormularioCampoModelView();
+            var model = new CadastroFormularioCampoModelView();
             
             model.ListaTipoCampo = MockModelView.ListaTipoCampo();
             model.ListaTipoValorCampo = MockModelView.ListaTipoValorCampo();
@@ -28,10 +28,15 @@ namespace AccessCorpFormulario.Web.Controllers
         }
 
         [HttpPost]
-        public ActionResult Cadastro(FormularioCampoModelView formularioCampo)
+        public ActionResult Cadastro(FormularioModelView formulario)
         {
 
-            return View();
+            var model = new CadastroFormularioCampoModelView();
+
+            model.ListaTipoCampo = MockModelView.ListaTipoCampo();
+            model.ListaTipoValorCampo = MockModelView.ListaTipoValorCampo();
+
+            return View(model);
         }
 
         [HttpGet]

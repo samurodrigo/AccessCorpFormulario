@@ -8,7 +8,7 @@ namespace AccessCorpFormulario.Infrastructure.Database.Interface
 {
     public interface IBaseRepositoryAction<T> where T: class
     {
-        void Insert(T t);
+        int Insert(T t);
         void Update(T t);
         void Delete(int id);
     }
