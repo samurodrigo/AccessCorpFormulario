@@ -24,16 +24,15 @@ namespace AccessCorpFormulario.Domain.ModelView.Mappers
                 if (formularioModelView.FormularioCampos != null && formularioModelView.FormularioCampos.Count > 0)
                 {
                     FormularioCampoDomain formularioCampoDomain = null;
+                    formularioDomain.FormularioCampos = new List<FormularioCampoDomain>();
 
                     foreach (var formularioCampo in formularioModelView.FormularioCampos)
                     {
-                        formularioDomain.FormularioCampos = new List<FormularioCampoDomain>();
-
                         formularioCampoDomain = new FormularioCampoDomain();
                         formularioCampoDomain.TipoValorCampo = new TipoValorCampoDomain { IdTipoValorCampo = formularioCampo.IdTipovalorCampo };
                         formularioCampoDomain.TipoCampo = new TipoCampoDomain { IdTipoCampo = formularioCampo.IdTipoCampo };
 
-                        if (formularioCampo.IdTipovalorCampo == 1)// DropDownList / Combobox
+                        if (formularioCampo.ValoresCombobox != null && formularioCampo.ValoresCombobox.Count > 0 && formularioCampo.IdTipovalorCampo == 1)// DropDownList / Combobox
                         {
                             formularioCampoDomain.ValoresCombobox = formularioCampo.ValoresCombobox;
                         }

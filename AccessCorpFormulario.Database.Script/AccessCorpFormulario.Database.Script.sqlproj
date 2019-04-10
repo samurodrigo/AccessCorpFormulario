@@ -60,5 +60,10 @@
   </ItemGroup>
   <ItemGroup>
     <Build Include="sp_s_get_formulario_campos.sql" />
+    <Build Include="Insert_table_TipoCampo.sql" />
+    <Build Include="Insert_table_TipoValorCampo.sql" />
+    <Build Include="sp_formulario_campo_Inserir.sql" />
+    <Build Include="sp_formulario_Inserir.sql" />
+    <Build Include="sp_valor_campo_Inserir.sql" />
   </ItemGroup>
 </Project>

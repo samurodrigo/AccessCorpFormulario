@@ -78,18 +78,18 @@ function salvar() {
 
     $("#table-campos tbody tr").each(function () {
 
-        var tipoCampo = $(this).find(".tipoCampo").text();
-        var tipovalorCampo = $(this).find(".tipoValorCampo").text();
+        var idTipoCampo = $(this).find(".tipoCampo").data("id");
+        var idTipovalorCampo = $(this).find(".tipoValorCampo").data("id");
         var valoresCombobox = [];
         var valorCampo = "";
 
-        if (tipoCampo === "Dropbox") {
-            valoresCombobox = addVoresCombobox($(this).find(".dados-combobox"));
+        if (idTipoCampo === 2) {// Valores para o Campo Combobox
+            valoresCombobox = addValoresCombobox($(this).find(".dados-combobox"));
         } else {
             valorCampo = $(this).find(".campo-simples").text();
         }
 
-        var campos = new Campos(tipoCampo, tipovalorCampo, valorCampo, valoresCombobox);
+        var campos = new Campos(idTipoCampo, idTipovalorCampo, valorCampo , valoresCombobox);
 
         dadosTabela.push(campos);
     });
@@ -102,8 +102,8 @@ function salvar() {
 }
 
 function Campos(tipoCampo, tipovalorCampo, valorCampo, valoresCombobox) {
-    this.TipoCampo = tipoCampo;
-    this.TipovalorCampo = tipovalorCampo;
+    this.IdTipoCampo = tipoCampo;
+    this.IdTipovalorCampo = tipovalorCampo;
     this.ValorCampo = valorCampo;
     this.ValoresCombobox = valoresCombobox;
 }
@@ -116,7 +116,7 @@ function FormularioCampo(nomeFormulario, dataVencimentoInicio, dataVencimentoFim
     this.FormularioCampos = formularioCampos;
 }
 
-function addVoresCombobox(valoresCampo) {
+function addValoresCombobox(valoresCampo) {
 
     var valoresCombobox = [];
 
@@ -129,15 +129,18 @@ function addVoresCombobox(valoresCampo) {
 }
 
 function adiconarMaisCampos() {
-    var idTipoCampo = $("#idTipoCampo").find(":selected").text();
+    var tipoCampo = $("#idTipoCampo").find(":selected").text();
+    var idTipoCampo = $("#idTipoCampo").find(":selected").val();
 
     var tipoValorCampo = $("#idTipoValorCampo").find(":selected").text();
-    var html = "<tr>";
-    html += "<td class='tipoCampo'>" + idTipoCampo + "</td>";
-    html += "<td class='tipoValorCampo'>" + tipoValorCampo + "</td>";
+    var idTipoValorCampo = $("#idTipoValorCampo").find(":selected").val();
 
-    if (idTipoCampo === "Dropbox") {
-        valorCampo = removerSpan($("#addValoresCombo").html());
+    var html = "<tr>";
+    html += "<td class='tipoCampo' data-id='" + idTipoCampo + "'>" + tipoCampo + "</td>";
+    html += "<td class='tipoValorCampo' data-id='" + idTipoValorCampo + "'>" + tipoValorCampo + "</td>";
+
+    if (tipoCampo === "Dropbox") {
+        var valorCampo = removerSpan($("#addValoresCombo").html());
         html += "<td class='dados-combobox'>" + valorCampo + "</td>";
     } else {
         html += "<td class='campo-simples'>" + $("#ValorCampo").val() + "</td>";
