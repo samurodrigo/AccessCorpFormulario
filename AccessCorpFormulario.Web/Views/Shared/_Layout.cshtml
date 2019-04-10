@@ -7,8 +7,10 @@
     <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
     <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
     <script src="~/Scripts/modernizr-2.6.2.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.7.8/angular.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.7.8/angular-route.min.js"></script>
 </head>
-<body>
+<body ng-app="app">
     <div class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
@@ -43,6 +45,13 @@
 
     <script src="~/Scripts/formulario.js"></script>
     <script src="~/Scripts/requestsAPIs.js"></script>
+    <!-- Angular app-->
+    <script src="~/Scripts/app/app.js"></script>
 
+    <!-- Angular Controllers -->
+    <script src="~/Scripts/app/formulario-cadastro/formulario-cadastro-controller.js"></script>
+
+    <!-- Angular Services -->
+    <script src="~/Scripts/app/formulario-cadastro/formulario-cadastro-service.js"></script>
 </body>
 </html>

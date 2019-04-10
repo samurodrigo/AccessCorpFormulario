@@ -6,106 +6,117 @@
 
 <h2>Cadastro</h2>
 
-@using (Html.BeginForm("Cadastro", "Formulario", FormMethod.Post, new { id="idFormulario"}))
-{
-    @Html.AntiForgeryToken()
+<div class="form-horizontal" ng-controller="FormularioCadastroController as frmCtrl">
+    <h3 ng-cloak>Cadasto de Formulario</h3>
+    <hr>
 
-    <div class="form-horizontal">
-        <h4>Cadasto de Formulario</h4>
-        <hr />
 
-        <fieldset>
-            <legend>Informações do Formulário</legend>
-            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-            <div class="form-group">
-                @Html.LabelFor(model => model.NomeFormulario, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.NomeFormulario, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.NomeFormulario, "", new { @class = "text-danger" })
-                </div>
-            </div>
+        <h4>Informações do Formulário</h4>
 
-            <div class="form-group">
-                @Html.LabelFor(model => model.DataVencimentoInicio, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.DataVencimentoInicio, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.DataVencimentoInicio, "", new { @class = "text-danger" })
-                </div>
-            </div>
-
-            <div class="form-group">
-                @Html.LabelFor(model => model.DataVencimentoFim, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.DataVencimentoFim, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.DataVencimentoFim, "", new { @class = "text-danger" })
-                </div>
-            </div>
-
-            <div class="form-group">
-                @Html.LabelFor(model => model.DescricaoFormulario, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.DescricaoFormulario, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.DescricaoFormulario, "", new { @class = "text-danger" })
-                </div>
-            </div>
-        </fieldset>
-        <hr />
-        <fieldset>
-            <legend>Campos do Formulário</legend>
-            <div class="form-group">
-                <label class="control-label col-md-2" for="idTipoCampo">Tipo de Campo</label>
-                <div class="col-md-10">
-                    @Html.DropDownList("idTipoCampo", new SelectList(Model.ListaTipoCampo, "Value", "Text"), htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div id="addValoresCombo"></div>
-                </div>
-            </div>
-
-            <div class="form-group">
-                <label class="control-label col-md-2" for="idTipoValorCampo">Tipo do valor de campo</label>
-                <div class="col-md-10">
-                    @Html.DropDownList("idTipoValorCampo", new SelectList(Model.ListaTipoValorCampo, "Value", "Text"), htmlAttributes: new { @class = "control-label col-md-2" })
-                </div>
-            </div>
-
-            <div class="form-group">
-                <label class="control-label col-md-2" for="ValorCampo"> Valor do Campo</label>
-                <div class="col-md-10">
-                    <input class="form-control text-box col-md-3" id="ValorCampo" name="ValorCampo" type="text" value="">
-                    <input class="btn btn-success col-md-5" type="button" id="btnAdicinarCampoParaCombobox" value="Adicinar o campo para o Combobox" />
-                </div>
-
-            </div>
-            <div class="form-group">
-                <div class="col-md-offset-2 col-md-10">
-                    <input type="button" id="btnAdiconarMaisCampos" value="Adicinar mais campos" class="btn btn-success" />
-                </div>
-            </div>
-            <span  id="erro-quantidade-linha-obrigatorio" 
-                  class="field-validation-valid text-danger" 
-                  data-valmsg-for="table-campos" 
-                  data-valmsg-replace="true">É obrigatório adicionar/cadastrar no minímo 10 campos.</span>
-            
-
-            <table class="table table-bordered table-responsive table-striped" id="table-campos">
-                <thead>
-                    <tr>
-                        <th>Tipo de Campo</th>
-                        <th>Tipo do valor de campo</th>
-                        <th>Valor do Campo</th>
-                        <th>Ação</th>
-                    </tr>
-                </thead>
-                <tbody></tbody>
-            </table>
-        </fieldset>
-        <hr />
         <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Salvar" class="btn btn-primary" id="btnSalvar" />
+            <label class="control-label col-md-2" for="NomeFormulario">Nome do formulário</label>
+            <div class="col-md-10">
+                <input class="form-control text-box single-line" id="NomeFormulario" name="NomeFormulario" type="text" ng-model="frmCtrl.nomeFormulario">
             </div>
         </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2" for="DataVencimentoInicio">Data vencimento início</label>
+            <div class="col-md-10">
+                <input class="form-control text-box single-line" id="DataVencimentoInicio" name="DataVencimentoInicio" type="text" ng-model="frmCtrl.dataVencimentoInicio">
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2" for="DataVencimentoFim">Data vencimento fim</label>
+            <div class="col-md-10">
+                <input class="form-control text-box single-line" id="DataVencimentoFim" name="DataVencimentoFim" type="text" ng-model="frmCtrl.dataVencimentoFim">
+                <span class="field-validation-valid text-danger"></span>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2" for="DescricaoFormulario">Descrição formulário</label>
+            <div class="col-md-10">
+                <input class="form-control text-box single-line" id="DescricaoFormulario" name="DescricaoFormulario" type="text" ng-model="frmCtrl.descricaoFormulario">
+                <span class="field-validation-valid text-danger"></span>
+            </div>
+        </div>
+    <hr>
+        <h4>Campos do Formulário</h4>
+        <div class="form-group">
+            <label class="control-label col-md-2" for="idTipoCampo">Tipo de Campo</label>
+            <div class="col-md-10">
+                <select class="form-control col-md-2" id="idTipoCampo" name="idTipoCampo" ng-model="frmCtrl.campo.tipoCampo"
+                        ng-options="tipoCampo.NomeTipoCampo for tipoCampo in frmCtrl.tiposCampo">
+                    <option value="">-- Selecionar --</option>
+                </select>
+                <div id="addValoresCombo">
+                    <label 
+                        class='label-valores-campo-combo label label-primary'
+                        ng-repeat="valor in frmCtrl.campo.valores">{{valor}}<span id='removerLabel' ng-click="frmCtrl.removerValorCampoParaCombobox(frmCtrl.campo, valor)">X</span></label>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2" for="idTipoValorCampo">Tipo do valor de campo</label>
+            <div class="col-md-10">
+                <select class="form-control col-md-2" id="idTipoValorCampo" name="idTipoValorCampo" ng-model="frmCtrl.campo.tipoValorCampo"
+                        ng-options="tipoValor.NomeTipoValorCampo for tipoValor in frmCtrl.valoresCampo">
+                    <option value="">-- Selecionar --</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2" for="ValorCampo"> Valor do Campo</label>
+            <div class="col-md-10">
+                <input class="form-control text-box col-md-3" id="ValorCampo" name="ValorCampo" type="text" ng-model="frmCtrl.campo.valorCampo">
+                <input class="btn btn-success col-md-5" 
+                       type="button" 
+                       id="btnAdicinarCampoParaCombobox" 
+                       value="Adicinar o campo para o Combobox" 
+                       ng-if="frmCtrl.campo.tipoCampo.NomeTipoCampo == 'Dropbox'"
+                       ng-click="frmCtrl.adicionarValorCampoParaCombobox(frmCtrl.campo, frmCtrl.campo.valorCampo)">
+            </div>
+
+        </div>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="button" id="btnAdiconarMaisCampos" value="Adicinar mais campos" class="btn btn-success" ng-click="frmCtrl.adicionarCampo()">
+            </div>
+        </div>
+           
+        <table class="table table-bordered table-responsive table-striped" id="table-campos">
+            <thead>
+                <tr>
+                    <th>Tipo de Campo</th>
+                    <th>Tipo do valor de campo</th>
+                    <th>Valor do Campo</th>
+                    <th>Ação</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="campo in frmCtrl.campos">
+                <td class="tipoCampo" data-id="1">{{campo.tipoCampo.NomeTipoCampo}}</td>
+                <td class="tipoValorCampo" data-id="1">{{campo.tipoValorCampo.NomeTipoValorCampo}}</td>
+                <td ng-class="{'campo-simples': !campo.valores, 'dados-combobox': campo.valores}">
+                    <span ng-if="!campo.valores">{{campo.valorCampo}}</span>
+                    <label ng-if="campo.valores" class='label-valores-campo-combo label label-primary'
+                           ng-repeat="valor in campo.valores">{{valor}}</label>
+                </td>
+                <td><button type="button" class="btn btn-primary excluir-linha-tabela" ng-click="frmCtrl.excluirCampo(campo)">Excluir</button></td>
+                </tr>
+            </tbody>
+        </table>
+    <hr>
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Salvar" class="btn btn-primary" id="btnSalvar" ng-click="frmCtrl.salvarFormulario()">
+        </div>
     </div>
-}
+</div>
 
 <div>
     @Html.ActionLink("Back to List", "Index")
